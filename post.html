@@ -23,7 +23,7 @@
                 </form>
             </div>
             <div class="cover-title">
-                <h1>5 Métodos para manejo de datos en JS</h1>
+                <h1>Un remero en cada hijo te dio</h1>
             </div>
         </div>
         <div class="container-post">
@@ -54,195 +54,69 @@
 
             <div class="letter-post">
 
-                <p>Cuando estamos desarrollando una aplicación web, el 90% de los datos que recibimos desde el back-end se encuentran contenidos en arreglos, por esta razón es fundamental que conozcas estos 5 métodos nativos de javascript que te harán la vida mas fácil a la hora de manipular los datos que contienen.</p>
-
-                <h2>1. Array.map()</h2>
-                <p>Para mi este, es el método mas importante de todos. Con esta función olvídate de utilizar ciclos for para recorrer y manipular arreglos.</p>
-<pre>
-    <code class="language-javascript">
-    var array = [1,2,3,4,5];
-
-    array.map(function(num){
-      return num * num;
-    });
-    </code>
-</pre>
-                <p>El método map() itera y retorna un nuevo arreglo con sus elementos modificados dependiendo de la función que se le aplique como parámetro. En este caso me devuelve un arreglo con cada elemento multiplicado por si mismo.</p>
-
-                <h2>2. Array.filter()</h2>
-                <p>El método filter() tiene un comportamiento similar al anterior, con la única diferencia de que el nuevo arreglo contendrá los elementos que pasen por un filtro.</p>
-                <p>Ejemplo:</p>
-<pre>
-    <code class="language-javascript">
-    var array = [1,'a','b',0,15,1];
-
-    array.filter(function(i){
-        return typeof i == 'number';
-    });
-    </code>
-</pre>
-
-                <p>En este caso el nuevo arreglo contiene los valores que sean de tipo number.</p>
-
-                <h2>3. Array.reduce()</h2>
-                <p>El método reduce() aplica una función que recibe dos parámetros, valor anterior y valor actual y retorna un nuevo valor reducido.</p>
-                <p>Sino se especifica un valor inicial, el valor anterior sera igual al primer elemento del arreglo y el valor actual al segundo:</p>
-<pre>
-    <code class="language-javascript">
-    var array = [1,2,3];
-
-    array.reduce(function(valorAnterior, valorActual){
-        return valorAnterior + valorActual;
-    });
-
-    //Primer llamado
-    //valorAnterior = 1 , valorActual = 2
-
-    //Segundo Llamado
-    //valorAnterior = 3, valorActual = 3
-
-    //return 6;
-    </code>
-</pre>
-                <p>En el caso de que se especifique el valor inicial, el valor anterior sera igual a este:</p>
-<pre>
-    <code class="language-javascript">
-    var array = [1,2,3];
-
-    array.reduce(function(valorAnterior, valorActual){
-        return valorAnterior + valorActual;
-    }, 4);
-
-    //Primer llamado
-    //valorAnterior = 4 , valorActual = 1
-
-    //Segundo Llamado
-    //valorAnterior = 5, valorActual = 2
-
-    //Tercer Llamado
-    //valorAnterior = 7, valorActual = 3
-
-    //return 10;
-    </code>
-</pre>
-                <h2>4. Array.sort()</h2>
-                <p>El método sort() nos devuelve un arreglo con los elementos ordenados, sino le pasamos una función que defina el tipo de ordenamiento, este lo hará de acuerdo a la posición de su valor en el estándar Unicode.</p>
-                <p>Ejemplo sin función de comparación</p>
-<pre>
-    <code class="language-javascript">
-    var array = ["rojo","amarillo","verde"];
-
-    array.sort();
-    </code>
-</pre>
-                <p>Ejemplo con función de comparación</p>
-<pre>
-    <code class="language-javascript">
-    var array = ["rojo","amarillo","verde"];
-
-    array.sort(function(a,b){
-        return a < b;
-    });
-    </code>
-</pre>
-                <p>Podríamos decir que el primer caso el método sort() ordeno el arreglo de "menor a mayor" (abc) y en el segundo caso de "mayor a menor" (zyx).</p>
-
-                <h2>5. Array.join()</h2>
-                <p>El método join() es muy sencillo pero eficaz, siempre los usamos cuando queremos unir los elementos de nuestro arreglo en una cadena, le podemos pasar como parametro una cadena que se encarga de separa los elementos del arreglo, si se omite se separan por una coma.</p>
-<pre>
-    <code class="language-javascript">
-    var array = ['script','web'];
-
-    array.join(' ');
-    </code>
-</pre>
-
-                <h2>Algunos ejemplos</h2>
-                <p>Ahora te dejo unos ejemplos un poco mas complejos en donde veras la utilidad de las funciones que describimos anteriormente:</p>
-                <p>Si ves esta sintaxis</p>
-<pre>
-    <code class="language-javascript">
-    (param1) => { statements }
-    (param1) => expression
-    </code>
-</pre>
-                <p>Son <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Funciones/Arrow_functions">Arrow functions</a> y equivalen a</p>
-<pre>
-    <code class="language-javascript">
-    function(param1){return param1}
-    function(param1)return param1
-    </code>
-</pre>
-                <h3>1. Encuentra el entero impar</h3>
-                <p>Dado un arreglo, encuentre el entero que aparece un numero impar de veces.Siempre habrá un único entero que aparece un numero impar de veces.</p>
-<pre>
-    <code class="language-javascript">
-    function findOdd(A) {
-        return A.reduce((a,b) => a ^ b);
-    }
-
-    console.log(findOdd([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]));
-    console.log(findOdd([5,4,3,2,1,5,4,3,2,10,10]));
-    console.log(findOdd([10]));
-    </code>
-</pre>
-                <h3>2. Remover de un arreglo el valor especificado</h3>
-                <p>Dado un arreglo de números, implementar una función que me retorne un nuevo arreglo sin el valor especificado.</p>
-<pre>
-    <code class="language-javascript">
-    function array_diff(a, b) {
-        return a.filter((i)=>i!=b);
-    }
-
-    console.log(array_diff([1,2],1));
-    console.log(array_diff([1,2,2,2,3],2));
-    </code>
-</pre>
-                <h3>3. Ordenar personas</h3>
-                <p>Implementar una función que me permita ordenar a un listado de personas por edad, de menor a mayor.</p>
-<pre>
-    <code class="language-javascript">
-    function OrderPeople(people){
-        return people.sort((a,b) => a.age - b.age  );
-    }
-
-    console.log(OrderPeople([   { age: 83, name: 'joel' },
-                    { age: 46, name: 'roger' },
-                    { age: 99, name: 'vinny' }
-    ]));
-    </code>
-</pre>
-                <h3>4. Orden, por favor</h3>
-                <p>Tu tarea es ordenar un string, cada palabra del string contiene un numero del 1 al 9, el numero indica la posición de la palabra</p>
-<pre>
-    <code class="language-javascript">
-    function order(words){
-        return words.split(' ').sort((a, b) => a.match(/\d/) - b.match(/\d/)).join(' ');
-    }
-
-    console.log(order("is2 Thi1s T4est 3a"));
-    </code>
-</pre>
-                <h3>5. Encuentra las mayusculas</h3>
-                <p>Escribe una función que tome una palabra como argumento y que retorne una lista con los indices de las letras mayúsculas.</p>
-
-<pre>
-    <code class="language-javascript">
-    var capitals = function (word) {
-        return word.split('').map((i) => /[A-Z]/.test(i) ? word.indexOf(i) : 'x').filter((i) => i != 'x');
-    }
-
-    console.log(capitals('CodEWaRs'));
-    </code>
-</pre>
-                <h2>Bibliográfia</h2>
-                <ol>
-                    <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/map">Array.prototype.map()</a></li>
-                    <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/filter">Array.prototype.filter()</a></li>
-                    <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/reduce">Array.prototype.reduce()</a></li>
-                    <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/sort">Array.prototype.sort()</a></li>
-                    <li><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Array/join">Array.prototype.join()</a></li>
-                </ol>
+              <p style="text-align: justify;">Estimado lector. Ahora que toca el cierre fiscal, he pasado las &uacute;ltimas horas haciendo algo de miner&iacute;a de datos y archivos. Curiosamente, encontr&eacute; esta lectura de antes del presente milenio. Era un documento que circulaba en las &eacute;pocas en que me introduje en la vida de la Calidad Total de Deming, en el Sistema de Ohno y mis primeras pinceladas en la Ingenier&iacute;a de Valor de Larry Miles. Es una caricatura para la reflexi&oacute;n de la &eacute;poca. Te pregunto, estimado lector, &iquest;Crees que ya hemos superado esta situaci&oacute;n?. &nbsp;Cualquier parecido con la realidad, es mera coincidencia.</p>
+<p style="text-align: justify;">A continuaci&oacute;n la transcripci&oacute;n de la lectura, de la que desconozco el autor.</p>
+<div style="text-align: justify;">Refieren las cr&oacute;nicas que en 1994 se celebr&oacute; una competencia de remo entre Jap&oacute;n y M&eacute;xico. Los remeros japoneses se destacaron desde el comienzo. Llegaron a la meta una hora antes que el equipo mexicano. &nbsp;De regreso en M&eacute;xico, el comit&eacute; ejecutivo se reuni&oacute; para analizar las causas de tan desconcertante e imprevisto resultado. Las conclusiones fueron:</div>
+<div>&nbsp;</div>
+<div>1) En el equipo japon&eacute;s hab&iacute;a un jefe de equipo y 10 remeros</div>
+<div>2) En el equipo mexicano hab&iacute;a un remero y 10 jefes</div>
+<div>&nbsp;</div>
+<table cellspacing="0" cellpadding="0" align="center">
+<tbody>
+<tr>
+<td><a href="http://mudanai.org/wp-content/uploads/2013/04/521974_565994133433507_1814777840_n.jpg"><img src="http://mudanai.org/wp-content/uploads/2013/04/521974_565994133433507_1814777840_n-300x228.jpg" alt="" width="400" height="303" border="0" /></a></td>
+</tr>
+<tr>
+<td>Imagen Original de Quino</td>
+</tr>
+</tbody>
+</table>
+<div style="text-align: justify;">La decisi&oacute;n pas&oacute; a la esfera de planificaci&oacute;n estrat&eacute;gica para el pr&oacute;ximo evento, con una reestructuraci&oacute;n que calar&iacute;a en lo m&aacute;s profundo a la delegaci&oacute;n.</div>
+<div style="text-align: justify;">&nbsp;</div>
+<div style="text-align: justify;">En 1995, producida la largada de la nueva competencia, el equipo japon&eacute;s volvi&oacute; a adelantarse desde el comienzo. Esta vez el equipo mexicano &nbsp;arrib&oacute; a la meta dos horas m&aacute;s tarde. El nuevo an&aacute;lisis del Comit&eacute; Ejecutivo arroj&oacute; los siguientes resultados:</div>
+<div style="text-align: justify;">&nbsp;</div>
+<div style="text-align: justify;">1) El equipo japon&eacute;s hab&iacute;a un jefe y 10 remeros.</div>
+<div style="text-align: justify;">2) En el equipo mexicano, luego de los cambios introducidos por el departamento de Panificaci&oacute;n Estrat&eacute;gica, la composici&oacute;n era la siguiente:</div>
+<div>&nbsp;</div>
+<ul>
+<li>Un jefe de equipo</li>
+<li>Dos Asistentes al Jefe</li>
+<li>Siete Jefes de Secci&oacute;n</li>
+<li>Un remero.&nbsp;</li>
+</ul>
+<div style="text-align: justify;">La conclusi&oacute;n del comit&eacute; fue un&aacute;nime y lapidaria: &uml;El remero es un incompetente&uml;</div>
+<div style="text-align: justify;">&nbsp;</div>
+<div style="text-align: justify;">En 1996 se les present&oacute; una nueva oportunidad al equipo mexicano. El Departamento de Nuevas Tecnolog&iacute;as y Negocios hab&iacute;a puesto en marcha un plan destinado a mejorar la productividad, introduciendo novedosas modificaciones en la organizaci&oacute;n que generar&iacute;a, sin lugar a dudas, incrementos substanciales de efectividad, eficiencia y eficacia. Ser&iacute;a la llave del &eacute;xito, el broche de oro de un trabajo que humillar&iacute;a al mism&iacute;simo Peter Drucker.</div>
+<div style="text-align: justify;">&nbsp;</div>
+<div style="text-align: justify;">El resultado fue catastr&oacute;fico. El equipo mexicano lleg&oacute; tres horas m&aacute;s tarde que el japon&eacute;s. Las &nbsp;conclusiones revelaron datos escalofriantes:</div>
+<div style="text-align: justify;">&nbsp;</div>
+<div style="text-align: justify;">1) Para desconcertar el equipo japon&eacute;s opt&oacute; por la alineaci&oacute;n tradicional:&nbsp; Un jefe y 10 remeros</div>
+<div style="text-align: justify;">2) El equipo mexicano utiliz&oacute; una novedosa formaci&oacute;n vanguardista, &nbsp;integrada por :</div>
+<div style="text-align: justify;">&nbsp;</div>
+<ul style="text-align: justify;">
+<li>Un jefe de equipo</li>
+<li>Dos auditores de Calidad Total</li>
+<li>Un asesor de Empowerment</li>
+<li>Un supervisor de downsizing</li>
+<li>Un analista de procedimientos</li>
+<li>Un tecn&oacute;logo</li>
+<li>Un contralor</li>
+<li>Un experto en Coaching</li>
+<li>Un apuntador de tiempo</li>
+<li>Un remero.</li>
+</ul>
+<p style="text-align: justify;">Luego de varios d&iacute;as de agotadoras reuniones y profundo an&aacute;lisis (tipo el Congreso para la autorizaci&oacute;n de la nueva miscel&aacute;nea fiscal) el comit&eacute; decidi&oacute; castigar al remero quit&aacute;ndole &uml;todos los bonos e incentivos por el fracaso alcanzado&uml;.</p>
+<div style="text-align: justify;">&nbsp;</div>
+<div style="text-align: justify;">En la reuni&oacute;n de cierre, el comit&eacute; junto con los accionistas representativos, concluyeron: &uml;Recurriremos a la contrataci&oacute;n de un nuevo remero, pero a trav&eacute;s de un contrato de outsourcing, con el objeto de no tener que lidiar con el sindicato y no estar atado a convenios laborales anquilosados, que sin duda, degradan la eficiencia y productividad de los recursos&uml;.</div>
+<div style="text-align: justify;">&nbsp;</div>
+<div style="text-align: justify;">De la anterior historia se desprenden tres moralejas:</div>
+<div style="text-align: justify;">&nbsp;&nbsp;</div>
+<ol>
+<li style="text-align: justify;">NO hay justicia en los juegos (ya nos tocaba, por participar siempre)</li>
+<li style="text-align: justify;">Los Japoneses usan anab&oacute;licos</li>
+<li style="text-align: justify;">El remero era reactivo en lugar de ser proactivo.</li>
+<li style="text-align: justify;">El remero era flojo y no se apeg&oacute; a la misi&oacute;n, visi&oacute;n, estrategias y t&aacute;cticas del sistema y por si fuera poco NO supo Trabajar en Equipo. &nbsp;</li>
+</ol>
 
                 <div class="post-author">
                     <a href="">
